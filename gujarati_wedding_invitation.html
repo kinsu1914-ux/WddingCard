@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>શુભ વિવાહ - સુરેશ અને કિન્નરી | Wedding Invitation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Hind+Vadodara:wght@400;500;600;700&family=Rozha+One&family=Yatra+One&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            800: '#5c0612',
+                            900: '#3d020a',
+                            DEFAULT: '#800020',
+                        },
+                        gold: {
+                            light: '#f9e79f',
+                            DEFAULT: '#D4AF37',
+                            dark: '#aa820a',
+                        },
+                        cream: '#FFFDD0',
+                        rose: '#ffebee',
+                    },
+                    fontFamily: {
+                        gujarati: ['"Hind Vadodara"', 'sans-serif'],
+                        yatra: ['"Yatra One"', 'cursive'],
+                        rozha: ['"Rozha One"', 'serif'],
+                        cinzel: ['"Cinzel Decorative"', 'serif'],
+                        vibes: ['"Great Vibes"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Hind Vadodara', sans-serif;
+            background-color: #2b0308;
+            background-image: radial-gradient(#4a0812 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #333;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .card-frame {
+            background: #fffdf9;
+            border: 12px solid #800020;
+            outline: 3px solid #D4AF37;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* Marigold Garland Top Border styling */
+        .garland-bg {
+            background-image: radial-gradient(circle, #ff9800 40%, #ff5722 70%);
+        }
+
+        /* Canvas element for flower petals */
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 4px;
+        }
+
+        /* Print and PDF Optimization */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+            }
+
+            #petalCanvas,
+            header,
+            nav,
+            #countdown-container,
+            footer,
+            .no-print {
+                display: none !important;
+            }
+
+            main.card-frame {
+                border: 2px solid #800020 !important;
+                outline: none !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .page-content {
+                display: block !important;
+                page-break-after: always;
+                padding: 20px !important;
+            }
+
+            .page-content:last-child {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between items-center p-2 sm:p-4 md:p-6 custom-scroll">
+
+    <!-- Falling Petals Canvas -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- Top Action Toolbar -->
+    <header
+        class="w-full max-w-4xl flex flex-wrap justify-between items-center bg-maroon-900/90 text-gold p-3 rounded-xl border border-gold/40 mb-4 shadow-lg backdrop-blur-md z-40 gap-2">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl text-gold animate-bounce">🕉️</span>
+            <div>
+                <h1 class="font-yatra text-lg text-gold leading-tight">ચિ. સુરેશ અને કિન્નરી</h1>
+                <p class="text-xs text-amber-200">શુભ વિવાહ આમંત્રણ કાર્ડ</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-sm flex-wrap">
+            <!-- Audio Toggle Button -->
+            <button id="audioBtn" onclick="toggleAudio()"
+                class="px-3 py-1.5 rounded-full bg-gold/20 hover:bg-gold/40 border border-gold text-gold flex items-center gap-1.5 transition duration-300 shadow-sm"
+                title="લગ્ન ગીત (વેળા મિલનની - જીગરદાન ગઢવી) ચાલુ/બંધ કરો">
+                <i id="audioIcon" class="fas fa-music"></i>
+                <span id="audioText" class="hidden sm:inline">વેળા મિલનની</span>
+            </button>
+
+            <!-- Petals Toggle -->
+            <button onclick="togglePetals()"
+                class="px-3 py-1.5 rounded-full bg-gold/20 hover:bg-gold/40 border border-gold text-gold flex items-center gap-1.5 transition duration-300 shadow-sm"
+                title="પુષ્પવૃષ્ટિ ચાલુ/બંધ કરો">
+                <i class="fas fa-spa"></i>
+                <span class="hidden sm:inline">પુષ્પવૃષ્ટિ</span>
+            </button>
+
+            <!-- WhatsApp Share Button -->
+            <button onclick="shareOnWhatsApp()"
+                class="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex items-center gap-1.5 transition duration-300 shadow-md"
+                title="વોટ્સએપ પર કાર્ડ મોકલો">
+                <i class="fab fa-whatsapp text-base"></i>
+                <span class="hidden md:inline">શેર</span>
+            </button>
+
+            <!-- Print / Save as PDF Button -->
+            <button onclick="window.print()"
+                class="px-3 py-1.5 rounded-full bg-gold/20 hover:bg-gold/40 border border-gold text-gold flex items-center gap-1.5 transition duration-300 shadow-sm"
+                title="કાર્ડ પ્રિન્ટ અથવા PDF સાચવો">
+                <i class="fas fa-print"></i>
+                <span class="hidden lg:inline">પ્રિન્ટ/PDF</span>
+            </button>
+
+            <!-- RSVP Button -->
+            <button onclick="openModal('rsvpModal')"
+                class="px-3 py-1.5 rounded-full bg-gold text-maroon-900 font-bold hover:bg-amber-300 transition duration-300 shadow-md">
+                <i class="fas fa-envelope-open-text mr-1"></i> RSVP
+            </button>
+        </div>
+    </header>
+
+    <!-- Live Wedding Countdown Bar -->
+    <div id="countdown-container"
+        class="w-full max-w-4xl bg-maroon-800 text-gold py-2 px-4 rounded-lg border border-gold/30 mb-4 text-center shadow-md">
+        <p class="text-xs font-semibold uppercase tracking-wider text-amber-200 mb-1">શુભ લગ્ન મુહૂર્ત ગણતરી (૬ ડિસેમ્બર
+            ૨૦૨૬)</p>
+        <div id="countdown"
+            class="flex justify-center items-center gap-3 font-mono text-sm sm:text-base font-bold text-white">
+            <div class="bg-maroon-900 px-2 py-1 rounded border border-gold/30"><span id="days">00</span> <span
+                    class="text-xs font-sans text-gold">દિવસ</span></div> :
+            <div class="bg-maroon-900 px-2 py-1 rounded border border-gold/30"><span id="hours">00</span> <span
+                    class="text-xs font-sans text-gold">કલાક</span></div> :
+            <div class="bg-maroon-900 px-2 py-1 rounded border border-gold/30"><span id="minutes">00</span> <span
+                    class="text-xs font-sans text-gold">મિનિટ</span></div> :
+            <div class="bg-maroon-900 px-2 py-1 rounded border border-gold/30"><span id="seconds">00</span> <span
+                    class="text-xs font-sans text-gold">સેકન્ડ</span></div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs for the 4 Cards -->
+    <nav class="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 z-40">
+        <button onclick="switchTab(1)" id="tab-1"
+            class="tab-btn py-2 px-3 text-sm font-semibold rounded-lg bg-gold text-maroon-900 shadow-lg border border-amber-300 transition-all flex items-center justify-center gap-1">
+            <span>📄</span> ૧. મુખ્ય પૃષ્ઠ
+        </button>
+        <button onclick="switchTab(2)" id="tab-2"
+            class="tab-btn py-2 px-3 text-sm font-semibold rounded-lg bg-maroon-900 text-gold hover:bg-maroon-800 border border-gold/40 transition-all flex items-center justify-center gap-1">
+            <span>💍</span> ૨. શુભ લગ્ન
+        </button>
+        <button onclick="switchTab(3)" id="tab-3"
+            class="tab-btn py-2 px-3 text-sm font-semibold rounded-lg bg-maroon-900 text-gold hover:bg-maroon-800 border border-gold/40 transition-all flex items-center justify-center gap-1">
+            <span>🌼</span> ૩. મંગલ પ્રસંગ
+        </button>
+        <button onclick="switchTab(4)" id="tab-4"
+            class="tab-btn py-2 px-3 text-sm font-semibold rounded-lg bg-maroon-900 text-gold hover:bg-maroon-800 border border-gold/40 transition-all flex items-center justify-center gap-1">
+            <span>🥁</span> ૪. રાસ ગરબા / સ્થળ
+        </button>
+    </nav>
+
+    <!-- MAIN CONTAINER CARD -->
+    <main class="w-full max-w-4xl card-frame rounded-2xl overflow-hidden my-auto transition-all duration-500">
+
+        <!-- Marigold Decor Header Banner -->
+        <div
+            class="h-8 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 flex justify-between items-center px-4 relative overflow-hidden border-b-2 border-gold">
+            <div class="flex gap-1">
+                <span class="text-xl">🌼</span>
+                <span class="text-xl">🌸</span>
+                <span class="text-xl">🌼</span>
+            </div>
+            <span class="font-bold text-xs tracking-widest text-maroon-900 uppercase font-serif">|| શ્રી ગણેશાય નમઃ
+                ||</span>
+            <div class="flex gap-1">
+                <span class="text-xl">🌼</span>
+                <span class="text-xl">🌸</span>
+                <span class="text-xl">🌼</span>
+            </div>
+        </div>
+
+        <!-- ================= CARD PAGE 1: COVER ================= -->
+        <div id="page-1" class="page-content p-4 sm:p-8 bg-amber-50/40">
+            <!-- Decorative Border Frame Inside -->
+            <div class="border-2 border-dashed border-maroon-800/40 p-4 sm:p-6 rounded-xl relative">
+
+                <!-- Ganesha Symbol & Header -->
+                <div class="text-center my-2">
+                    <div
+                        class="w-16 h-16 mx-auto bg-maroon-800 text-gold rounded-full flex items-center justify-center text-3xl shadow-md border-2 border-gold mb-2">
+                        🕉️
+                    </div>
+                    <p class="text-xs text-maroon-800 font-bold tracking-widest uppercase">|| શ્રી ગણેશાય નમઃ ||</p>
+
+                    <!-- Decorative Lotus Motif -->
+                    <div class="text-amber-600 text-2xl my-1">🪷</div>
+
+                    <!-- Shubh Vivah Calligraphy Style -->
+                    <h2 class="font-yatra text-4xl sm:text-6xl text-maroon-800 my-2 drop-shadow-sm">
+                        શુભ વિવાહ
+                    </h2>
+
+                    <div class="flex items-center justify-center gap-2 text-maroon-900 font-semibold my-2">
+                        <span class="h-0.5 w-12 bg-gold"></span>
+                        <span class="text-lg text-maroon-800">રવિવાર તા. ૬-૧૨-૨૦૨૬</span>
+                        <span class="h-0.5 w-12 bg-gold"></span>
+                    </div>
+                </div>
+
+                <!-- Bride & Groom Highlight -->
+                <div
+                    class="my-8 text-center bg-maroon-900 text-gold p-6 rounded-2xl border-2 border-gold shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-6 -left-6 w-16 h-16 bg-gold/20 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-gold/20 rounded-full blur-xl"></div>
+
+                    <p class="text-amber-200 text-sm font-semibold mb-2">લગ્ન ગ્રંથિથી જોડાશે</p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6">
+                        <div class="text-center">
+                            <span class="text-xs text-amber-300 font-bold block">ચિ.</span>
+                            <span class="font-yatra text-3xl sm:text-4xl text-white">સુરેશ</span>
+                        </div>
+                        <div class="text-3xl text-gold animate-pulse">👩‍❤️‍👨</div>
+                        <div class="text-center">
+                            <span class="text-xs text-amber-300 font-bold block">ચિ.</span>
+                            <span class="font-yatra text-3xl sm:text-4xl text-white">કિન્નરી</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inviter Card Info Bottom Left -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mt-6">
+                    <div class="bg-white/80 p-4 rounded-xl border border-maroon-800/20 shadow-sm">
+                        <p
+                            class="text-xs text-maroon-800 font-bold tracking-wider mb-2 uppercase border-b border-maroon-200 pb-1">
+                            આમંત્રણ પત્રિકા
+                        </p>
+                        <div class="space-y-1 text-sm text-gray-800">
+                            <p class="flex items-center gap-2"><span class="text-maroon-800">શ્રી/શ્રીમતી:</span> <span
+                                    class="border-b border-maroon-300 flex-grow text-gray-400 italic">આપનું હાર્દિક
+                                    સ્વાગત છે</span></p>
+                        </div>
+                        <div class="mt-4 pt-2 border-t border-dashed border-gray-300">
+                            <p class="text-xs font-bold text-maroon-800">નિંત્રક:</p>
+                            <p class="font-bold text-gray-900 text-sm">શ્રી મહેન્દ્રભાઈ ભીમજીભાઈ હાલારી</p>
+                            <p class="text-xs text-gray-700 leading-relaxed mt-1">
+                                બિ.૪૦૩, રિતુ ગ્લોરીયસ સોસાયટી, મહાવીર નગર, આઈડીયલ પાર્ક, મીરા રોડ (પૂર્વ), થાણે - ૪૦૧૧૦૭
+                            </p>
+                            <div class="text-xs font-semibold text-maroon-800 mt-2 flex flex-wrap items-center gap-1.5">
+                                <span><i class="fas fa-phone-alt mr-1"></i> સંપર્ક:</span>
+                                <a href="tel:9819408295"
+                                    class="bg-amber-100 hover:bg-amber-200 text-maroon-900 px-2 py-0.5 rounded border border-maroon-300 font-bold transition flex items-center gap-1"
+                                    title="કૉલ કરો">
+                                    <i class="fas fa-phone text-[10px]"></i> ૯૮૧૯૪૦૮૨૯૫
+                                </a>
+                                <a href="tel:9769368909"
+                                    class="bg-amber-100 hover:bg-amber-200 text-maroon-900 px-2 py-0.5 rounded border border-maroon-300 font-bold transition flex items-center gap-1"
+                                    title="કૉલ કરો">
+                                    <i class="fas fa-phone text-[10px]"></i> ૯૭૬૯૩૬૮૯૦૯
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Illustration Frame -->
+                    <div
+                        class="text-center bg-amber-100/50 p-4 rounded-xl border border-gold flex flex-col items-center justify-center">
+                        <div class="text-5xl my-2">🛕</div>
+                        <p class="font-yatra text-maroon-800 text-lg">કંકુ પગલાં અને મંગળ ફેરા</p>
+                        <p class="text-xs text-gray-600">આપની સમક્ષ હાજરી એ જ અમારું પરમ સૌભાગ્ય છે.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= CARD PAGE 2: MAIN INVITATION / SUBH LAGN ================= -->
+        <div id="page-2" class="page-content p-4 sm:p-8 bg-rose-50/40 hidden">
+            <div class="border-2 border-gold p-4 sm:p-6 rounded-xl relative bg-white/60">
+
+                <!-- Religious Invocations Header -->
+                <div class="text-center space-y-1 mb-4 border-b border-gold/40 pb-3">
+                    <div
+                        class="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-bold text-maroon-800">
+                        <span>॥ શ્રી પીઠડમાતાય નમઃ ॥</span>
+                        <span>॥ શ્રી ગણેશાય નમઃ ॥</span>
+                        <span>॥ શ્રી ચામુંડામાતાય નમઃ ॥</span>
+                    </div>
+                    <p class="text-xs text-amber-900 mt-2 italic px-2">
+                        સહર્ષ ખુશાલી સાથે જણાવવાનું કે પરમ કૃપાળુ શ્રી પીઠડમાતા ની અસીમ કૃપાથી...
+                    </p>
+                </div>
+
+                <!-- Bride & Groom Parentage & Native Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <!-- Groom Side -->
+                    <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-maroon-800 shadow-sm">
+                        <span class="text-xs font-bold text-maroon-800 uppercase tracking-widest block mb-1">વર
+                            પક્ષ</span>
+                        <h3 class="font-yatra text-2xl text-maroon-900">ચિ. સુરેશ</h3>
+                        <p class="text-xs text-gray-700 mt-1">
+                            અ.સૌ. ઊર્મિલાબેન તથા શ્રી મહેન્દ્રભાઈ ભીમજીભાઈ હાલારી ના સુપુત્ર
+                        </p>
+                        <p class="text-xs text-maroon-800 font-semibold mt-2">
+                            (ગામ-દહસરા, જસદણ, રાજકોટ) હાલ મીરા રોડ, મુંબઈ નિવાસી
+                        </p>
+                    </div>
+
+                    <!-- Bride Side -->
+                    <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-gold shadow-sm">
+                        <span class="text-xs font-bold text-maroon-800 uppercase tracking-widest block mb-1">કન્યા
+                            પક્ષ</span>
+                        <h3 class="font-yatra text-2xl text-maroon-900">ચિ. કિન્નરી</h3>
+                        <p class="text-xs text-gray-700 mt-1">
+                            અ.સૌ. જશોદાબેન તથા શ્રી બિપિનચંદ્ર કાંતિલાલ સોલંકીની સુપુત્રી
+                        </p>
+                        <p class="text-xs text-maroon-800 font-semibold mt-2">
+                            (ગામ-બેરાલુ, મહેસાણા) હાલ નરોડા, અમદાવાદ નિવાસી સાથે
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Subh Lagn Timing Box -->
+                <div class="bg-maroon-800 text-gold p-4 rounded-xl text-center my-4 border border-gold shadow-md">
+                    <p class="text-xs font-bold text-amber-200 uppercase tracking-wider mb-1">શુભ લગ્ન સમય</p>
+                    <p class="text-sm sm:text-base font-semibold text-white leading-relaxed">
+                        વિક્રમ સંવત ૨૦૮૩ ના કારતક વદ ૧૩ ને રવિવાર તા. ૬-૧૨-૨૦૨૬ ના શુભદિને સવારે ૧૧.૦૦ કલાકે શાસ્ત્રોના
+                        મંગલધ્વનિ વચ્ચે અગ્નિ શિખાની સાક્ષીએ સાજન મહાજનના સ્નેહ સથવારે પરિણયના પુનિત પંથે પ્રસ્થાન
+                        કરશે...
+                    </p>
+                    <p class="text-xs text-amber-200 mt-2 font-medium">
+                        બે પરિવારના મધુર મિલનના આ અપૂર્વ અવસરે આપ આપની હાજરીના હસ્તાક્ષર કરવા અવશ્ય પધારશો.
+                    </p>
+                </div>
+
+                <!-- Compliments / Snehavadhin Section -->
+                <div class="mt-6 pt-4 border-t border-dashed border-gray-400">
+                    <h4 class="font-bold text-maroon-800 text-sm mb-3 text-center underline decoration-gold">સ્નેહાધિન
+                        તથા શુભેચ્છક પરિવાર</h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-gray-800">
+                        <ul class="space-y-1">
+                            <li>• સ્વ. ભીમજીભાઈ ભુરાભાઈ હાલારી</li>
+                            <li>• સ્વ. ગિરધરભાઈ રામજીભાઈ હાલારી</li>
+                            <li>• સ્વ. જયંતિભાઈ ભીમજીભાઈ હાલારી</li>
+                            <li>• શ્રી. મહેન્દ્રભાઈ ભીમજીભાઈ હાલારી</li>
+                            <li>• સ્વ. અશ્વિનભાઈ ભીમજીભાઈ હાલારી</li>
+                            <li>• શ્રી. રાજેશ જયંતિભાઈ હાલારી</li>
+                            <li>• શ્રી. વિજય ગિરધરભાઈ હાલારી</li>
+                            <li>• ચિ. મિતેશ મહેન્દ્રભાઈ હાલારી</li>
+                            <li>• ચિ. સંકેત અશ્વિનભાઈ હાલારી</li>
+                        </ul>
+                        <ul class="space-y-1">
+                            <li>• સ્વ. જયાબેન ભીમજીભાઈ હાલારી</li>
+                            <li>• ગં.સ્વ. રમાબેન ગિરધરભાઈ હાલારી</li>
+                            <li>• સ્વ. શોભનાબેન જયંતિભાઈ હાલારી</li>
+                            <li>• અ.સૌ. ઊર્મિલાબેન મહેન્દ્રભાઈ હાલારી</li>
+                            <li>• સ્વ. નિશાબેન અશ્વિનભાઈ હાલારી</li>
+                            <li>• અ.સૌ. અમીબેન રાજેશ હાલારી</li>
+                            <li>• અ.સૌ. જલ્પાબેન વિજય હાલારી</li>
+                            <li class="font-bold text-maroon-800 pt-1">જમાઈ પક્ષ:</li>
+                            <li>• દેવેન્દ્ર દત્તારામ હરમલકર / નિતા દેવેન્દ્ર હરમલકર</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-center text-xs font-bold text-maroon-800 mt-4 italic">
+                        તથા સમસ્ત હાલારી પરિવારના હરખના તેડા...
+                    </p>
+                    <p class="text-center text-xs text-gray-600 mt-1">
+                        ઢોલ વાગશે શરણાઈ ગૂંજશે, અને જામશે ખુશીઓનો માહોલ, સુરેશ કાકાના લગ્નમાં આવવાનું ચુકતા નહીં, આ છે
+                        અમારા બોલ... <strong>દિશા, ઓમ, ગૌરવ</strong>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= CARD PAGE 3: PRE-WEDDING FUNCTIONS ================= -->
+        <div id="page-3" class="page-content p-4 sm:p-8 bg-amber-50/30 hidden">
+            <div class="border-2 border-gold p-4 sm:p-6 rounded-xl relative">
+
+                <!-- Heading -->
+                <div class="text-center mb-6">
+                    <span class="text-xs text-maroon-800 font-bold uppercase tracking-widest block">મંગલ પ્રસંગ વિગત
+                        (ભાગ-૧)</span>
+                    <h2 class="font-yatra text-2xl sm:text-3xl text-maroon-800 mt-1">સોનેરી અવસરની... રૂપેરી આભા...</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <!-- Event Timeline List -->
+                <div class="space-y-4">
+
+                    <!-- Event 1: Mangal Murti -->
+                    <div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-gold/30 shadow-sm">
+                        <div
+                            class="w-12 h-12 bg-maroon-800 text-gold rounded-full flex items-center justify-center text-xl flex-shrink-0 border border-gold">
+                            🐘
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-maroon-900 text-base">મંગલમુર્તિ</h4>
+                            <p class="text-xs text-gray-700">શનિવાર તા. ૫-૧૨-૨૦૨૬ ના રોજ | સવારે ૮.૦૦ કલાકે</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: Mandavda Ropashe -->
+                    <div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-gold/30 shadow-sm">
+                        <div
+                            class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center text-xl flex-shrink-0 border border-gold">
+                            🏺
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-maroon-900 text-base">રૂડા માંડવડા રોપાશે</h4>
+                            <p class="text-xs text-gray-700">શનિવાર તા. ૫-૧૨-૨૦૨૬ ના રોજ | સવારે ૯.૦૦ કલાકે</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 3: Mandva Bhojan -->
+                    <div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-gold/30 shadow-sm">
+                        <div
+                            class="w-12 h-12 bg-red-700 text-gold rounded-full flex items-center justify-center text-xl flex-shrink-0 border border-gold">
+                            🍲
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-maroon-900 text-base">માંડવા ભોજન</h4>
+                            <p class="text-xs text-gray-700">રવિવાર તા. ૫-૧૨-૨૦૨૬ ના રોજ | બપોરે ૧૨.૩૦ કલાકે</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 4: Haldi Rasam -->
+                    <div
+                        class="flex items-center gap-4 bg-yellow-100 p-3 rounded-xl border border-yellow-400 shadow-sm">
+                        <div
+                            class="w-12 h-12 bg-yellow-500 text-maroon-900 rounded-full flex items-center justify-center text-xl flex-shrink-0 border border-yellow-600">
+                            ✨
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-maroon-900 text-base">હલ્દી રસમ (Haldi Ceremony)</h4>
+                            <p class="text-xs text-amber-900">શનિવાર તા. ૫-૧૨-૨૦૨૬ ના રોજ | બપોરે ૪.૦૦ કલાકે</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Venue Card for Page 3 -->
+                <div
+                    class="mt-6 bg-maroon-900 text-white p-4 rounded-xl border border-gold text-center relative overflow-hidden shadow-lg">
+                    <span class="text-xs text-gold uppercase tracking-widest font-bold block mb-1">વાડી (પ્રસંગ
+                        સ્થળ)</span>
+                    <h3 class="font-yatra text-xl text-gold">શ્રી કચ્છી ભાનુશાલી વાડી</h3>
+                    <p class="text-xs text-amber-100 mt-1 leading-relaxed">
+                        દહેગામ રોડ, જી.આઈ.ડી.સી., નરોડા, અમદાવાદ
+                    </p>
+                    <a href="https://maps.google.com/?q=Shree+Kutchhi+Bhanushali+Vadi+Naroda+Ahmedabad" target="_blank"
+                        rel="noopener"
+                        class="mt-3 inline-flex items-center gap-2 bg-gold text-maroon-900 px-4 py-1.5 rounded-full text-xs font-bold hover:bg-amber-300 transition">
+                        <i class="fas fa-map-marker-alt"></i> મેપ પર જુઓ (Google Maps)
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= CARD PAGE 4: MAIN FUNCTIONS & VENUE ================= -->
+        <div id="page-4" class="page-content p-4 sm:p-8 bg-rose-50/30 hidden">
+            <div class="border-2 border-gold p-4 sm:p-6 rounded-xl relative">
+
+                <!-- Heading -->
+                <div class="text-center mb-6">
+                    <span class="text-xs text-maroon-800 font-bold uppercase tracking-widest block">મુખ્ય કાર્યક્રમ વિગત
+                        (ભાગ-૨)</span>
+                    <h2 class="font-yatra text-2xl sm:text-3xl text-maroon-800 mt-1">રાસ ગરબા અને લગ્ન ઉત્સવ</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <!-- Key Events Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                    <!-- Raas Garba -->
+                    <div class="bg-white p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-yatra text-xl text-maroon-900">રાસ ગરબા</h4>
+                                <span class="text-2xl">💃🕺</span>
+                            </div>
+                            <p class="text-xs text-gray-700 font-semibold">શનિવાર તા. ૫-૧૨-૨૦૨૬ | સાંજ ૯.૦૦ કલાકે</p>
+                            <p class="text-xs text-gray-600 mt-2">
+                                <i class="fas fa-map-pin text-maroon-800 mr-1"></i> શક્તિ ચોક, પાર્શ્વનાથ ટાઉનશિપ,
+                                કૃષ્ણા નગર, અમદાવાદ
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Jaan Prasthan -->
+                    <div class="bg-white p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-yatra text-xl text-maroon-900">જાન પ્રસ્થાન</h4>
+                                <span class="text-2xl">🐎</span>
+                            </div>
+                            <p class="text-xs text-gray-700 font-semibold">રવિવાર તા. ૬-૧૨-૨૦૨૬ | સવારે ૯.૦૦ કલાકે</p>
+                            <p class="text-xs text-gray-500 mt-2">મીરા રોડથી અમદાવાદ આગમન</p>
+                        </div>
+                    </div>
+
+                    <!-- Hast Melap -->
+                    <div class="bg-white p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-yatra text-xl text-maroon-900">હસ્ત મેળાપ</h4>
+                                <span class="text-2xl">🤝</span>
+                            </div>
+                            <p class="text-xs text-gray-700 font-semibold">રવિવાર તા. ૬-૧૨-૨૦૨૬ | સવારે ૧૧.૦૦ કલાકે</p>
+                            <p class="text-xs text-gray-500 mt-2">શાસ્ત્રોક્ત વિધિ અનુસાર મંગળ ફેરા</p>
+                        </div>
+                    </div>
+
+                    <!-- Bhojan Samarambh -->
+                    <div class="bg-white p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-yatra text-xl text-maroon-900">ભોજન સમારંભ</h4>
+                                <span class="text-2xl">🍱</span>
+                            </div>
+                            <p class="text-xs text-gray-700 font-semibold">રવિવાર તા. ૬-૧૨-૨૦૨૬ | બપોરે ૧૨.૩૦ કલાકે</p>
+                            <p class="text-xs text-gray-500 mt-2">મહાપ્રસાદ તથા સ્નેહ મિલન</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Wedding Venue Box -->
+                <div
+                    class="mt-6 bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-900 text-white p-5 rounded-2xl border-2 border-gold text-center shadow-xl">
+                    <span class="text-xs text-amber-300 font-bold tracking-widest uppercase block mb-1">
+                        🏰 લગ્ન સ્થળ (Main Wedding Venue)
+                    </span>
+                    <h3 class="font-yatra text-2xl text-gold mb-1">નિકોલ કોમ્યુનિટી હોલ</h3>
+                    <p class="text-xs sm:text-sm text-gray-200">
+                        અમરકુંજ સોસાયટી, ન્યુ ઈન્ડીયા કોલોની, નવા નરોડા, અમદાવાદ
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap justify-center gap-3">
+                        <a href="https://maps.google.com/?q=Nikol+Community+Hall+New+India+Colony+Nava+Naroda+Ahmedabad"
+                            target="_blank" rel="noopener"
+                            class="bg-gold text-maroon-900 hover:bg-amber-300 px-5 py-2 rounded-full text-xs font-bold shadow flex items-center gap-2 transition">
+                            <i class="fas fa-directions text-base"></i> Google Maps પર નેવિગેટ કરો
+                        </a>
+                        <button onclick="addToCalendar()"
+                            class="bg-white/10 hover:bg-white/20 text-gold border border-gold/50 px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 transition">
+                            <i class="far fa-calendar-plus"></i> કલેન્ડરમાં ઉમેરો
+                        </button>
+                        <button onclick="shareOnWhatsApp()"
+                            class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow flex items-center gap-2 transition">
+                            <i class="fab fa-whatsapp text-sm"></i> વોટ્સએપ પર આમંત્રણ મોકલો
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Card Footer Actions Bar -->
+        <footer
+            class="bg-amber-100 p-3 sm:p-4 border-t border-gold flex flex-wrap justify-between items-center text-xs text-maroon-900 gap-2">
+            <div class="flex items-center gap-2">
+                <span class="font-bold hidden sm:inline">પેજ:</span>
+                <button onclick="prevPage()"
+                    class="w-8 h-8 rounded-full bg-maroon-800 text-gold flex items-center justify-center hover:bg-maroon-900 shadow-sm"
+                    title="પાછળનું પેજ">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <span id="pageIndicator" class="font-bold text-sm px-1">૧ / ૪</span>
+                <button onclick="nextPage()"
+                    class="w-8 h-8 rounded-full bg-maroon-800 text-gold flex items-center justify-center hover:bg-maroon-900 shadow-sm"
+                    title="આગળનું પેજ">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <span class="text-[11px] text-maroon-700/80 italic hidden md:inline ml-2">💡 મોબાઇલમાં પેજ બદલવા
+                    ડાબે/જમણે સ્વાઇપ કરો</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="shareOnWhatsApp()"
+                    class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md font-semibold transition flex items-center gap-1 shadow-sm"
+                    title="વોટ્સએપ શેર">
+                    <i class="fab fa-whatsapp"></i> <span class="hidden sm:inline">વોટ્સએપ</span>
+                </button>
+                <button onclick="shareInvite()"
+                    class="px-3 py-1.5 bg-maroon-800 hover:bg-maroon-900 text-gold rounded-md font-semibold transition flex items-center gap-1 shadow-sm"
+                    title="લિંક કોપી / શેર">
+                    <i class="fas fa-share-alt"></i> <span class="hidden sm:inline">શેર કરો</span>
+                </button>
+                <button onclick="window.print()"
+                    class="px-2.5 py-1.5 bg-amber-200/80 hover:bg-amber-300 text-maroon-900 border border-maroon-300 rounded-md font-semibold transition flex items-center gap-1"
+                    title="પ્રિન્ટ / PDF">
+                    <i class="fas fa-print"></i>
+                </button>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Bottom Signature -->
+    <footer class="text-center text-gold/60 text-xs py-4">
+        <p>॥ શુભં ભવતુ ॥ | Digital Invitation Card</p>
+    </footer>
+
+    <!-- RSVP Modal Window -->
+    <div id="rsvpModal"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl border-2 border-gold max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeModal('rsvpModal')"
+                class="absolute top-4 right-4 text-gray-500 hover:text-maroon-800 text-xl font-bold">
+                ✕
+            </button>
+            <h3 class="font-yatra text-2xl text-maroon-800 text-center mb-1">આમંત્રણ સ્વીકૃતિ (RSVP)</h3>
+            <p class="text-xs text-gray-600 text-center mb-4">મહેરબાની કરીને આપની ઉપસ્થિતિ અંગે જણાવશો</p>
+
+            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">આપનું નામ (Full Name)</label>
+                    <input type="text" id="rsvpName" required placeholder="શ્રી / શ્રીમતી..."
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">સભ્યોની સંખ્યા (No. of Guests)</label>
+                    <select id="rsvpGuests"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon-800">
+                        <option value="૧ વ્યક્તિ">૧ વ્યક્તિ</option>
+                        <option value="૨ વ્યક્તિ">૨ વ્યક્તિ</option>
+                        <option value="૩ થી ૫ વ્યક્તિ">૩ થી ૫ વ્યક્તિ</option>
+                        <option value="સમસ્ત પરિવાર">સમસ્ત પરિવાર</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">આપનો શુભેચ્છા સંદેશ (Best Wishes)</label>
+                    <textarea id="rsvpMessage" rows="3" placeholder="સુરેશ અને કિન્નરી માટે આપનો મંગળ સંદેશ..."
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon-800"></textarea>
+                </div>
+                <div class="space-y-2 pt-1">
+                    <button type="button" onclick="sendRSVPWhatsApp()"
+                        class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold transition flex items-center justify-center gap-2 shadow-md">
+                        <i class="fab fa-whatsapp text-lg"></i> વોટ્સએપ પર RSVP મોકલો
+                    </button>
+                    <button type="submit"
+                        class="w-full py-2 bg-maroon-800/90 hover:bg-maroon-900 text-gold rounded-lg font-semibold transition text-xs">
+                        અહીં પુષ્ટિ કરો (Confirm on Screen)
+                    </button>
+                </div>
+            </form>
+            <div id="rsvpSuccess" class="hidden text-center text-green-700 font-bold py-4">
+                ✅ આપનો પ્રતિસાદ અને શુભેચ્છાઓ સફળતાપૂર્વક નોંધાઈ ગઈ છે. ધન્યવાદ!
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Page Navigation Logic
+        let currentPage = 1;
+        const totalPages = 4;
+
+        function switchTab(pageNum) {
+            currentPage = pageNum;
+            for (let i = 1; i <= totalPages; i++) {
+                const pageEl = document.getElementById(`page-${i}`);
+                const tabEl = document.getElementById(`tab-${i}`);
+
+                if (i === pageNum) {
+                    pageEl.classList.remove('hidden');
+                    tabEl.classList.remove('bg-maroon-900', 'text-gold');
+                    tabEl.classList.add('bg-gold', 'text-maroon-900');
+                } else {
+                    pageEl.classList.add('hidden');
+                    tabEl.classList.remove('bg-gold', 'text-maroon-900');
+                    tabEl.classList.add('bg-maroon-900', 'text-gold');
+                }
+            }
+            document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                switchTab(currentPage + 1);
+            } else {
+                switchTab(1);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                switchTab(currentPage - 1);
+            } else {
+                switchTab(totalPages);
+            }
+        }
+
+        // Live Countdown Timer to Dec 6, 2026
+        const weddingDate = new Date('December 6, 2026 11:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "<span class='text-gold'>શુભ લગ્ન પ્રસંગ સંપન્ન થયો છે!</span>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Wedding Audio: "વેળા મિલનની - જીગરદાન ગઢવી & યતિ ઉપાધ્યાય"
+        const weddingAudio = new Audio('wedding_song.mp3');
+        weddingAudio.loop = true;
+        let isPlaying = false;
+
+        function toggleAudio() {
+            const audioIcon = document.getElementById('audioIcon');
+            const audioText = document.getElementById('audioText');
+
+            if (isPlaying) {
+                weddingAudio.pause();
+                if (audioIcon) audioIcon.className = "fas fa-music";
+                if (audioText) audioText.innerText = "વેળા મિલનની";
+                isPlaying = false;
+            } else {
+                weddingAudio.play().then(() => {
+                    if (audioIcon) audioIcon.className = "fas fa-volume-up text-amber-300 animate-pulse";
+                    if (audioText) audioText.innerText = "ગીત બંધ કરો";
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log("Audio play prevented (requires user gesture):", err);
+                });
+            }
+        }
+
+        // Falling Petals Canvas Animation
+        const canvas = document.getElementById('petalCanvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+        let petalsActive = true;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 6;
+                this.speedY = Math.random() * 1.5 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 2 - 1;
+                // Marigold Orange, Rose Pink & Gold Petals
+                const colors = ['#FF9800', '#FF5722', '#E91E63', '#FFC107', '#D4AF37'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.angle * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            petals.push(new Petal());
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (petalsActive) {
+                petals.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+            }
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+        function togglePetals() {
+            petalsActive = !petalsActive;
+        }
+
+        // Touch Swipe Navigation for Mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const mainCard = document.querySelector('main.card-frame');
+
+        if (mainCard) {
+            mainCard.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            mainCard.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipeGesture();
+            }, { passive: true });
+        }
+
+        function handleSwipeGesture() {
+            const swipeDistance = touchEndX - touchStartX;
+            if (Math.abs(swipeDistance) > 45) {
+                if (swipeDistance < 0) {
+                    // Swiped Left -> Next Page
+                    nextPage();
+                } else {
+                    // Swiped Right -> Previous Page
+                    prevPage();
+                }
+            }
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function handleRSVP(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').classList.add('hidden');
+            document.getElementById('rsvpSuccess').classList.remove('hidden');
+            setTimeout(() => {
+                closeModal('rsvpModal');
+                document.getElementById('rsvpForm').reset();
+                document.getElementById('rsvpForm').classList.remove('hidden');
+                document.getElementById('rsvpSuccess').classList.add('hidden');
+            }, 3000);
+        }
+
+        // RSVP Direct via WhatsApp to Host
+        function sendRSVPWhatsApp() {
+            const nameEl = document.getElementById('rsvpName');
+            const guestsEl = document.getElementById('rsvpGuests');
+            const msgEl = document.getElementById('rsvpMessage');
+
+            const name = nameEl ? nameEl.value.trim() : '';
+            const guests = guestsEl ? guestsEl.value : '૧ વ્યક્તિ';
+            const msg = msgEl ? msgEl.value.trim() : '';
+
+            if (!name) {
+                alert('કૃપા કરીને આપનું નામ દાખલ કરો.');
+                if (nameEl) nameEl.focus();
+                return;
+            }
+
+            const rsvpMsg = `🌸 *શુભ વિવાહ આમંત્રણ સ્વીકૃતિ (RSVP)* 🌸\n` +
+                `ચિ. સુરેશ અને ચિ. કિન્નરી ના શુભ લગ્ન પ્રસંગે:\n\n` +
+                `👤 *અતિથિનું નામ:* ${name}\n` +
+                `👥 *સભ્યોની સંખ્યા:* ${guests}\n` +
+                (msg ? `💌 *શુભેચ્છા સંદેશ:* ${msg}\n` : '') +
+                `\nઅમે અવશ્ય ઉપસ્થિત રહીશું! પરિવારને ખૂબ ખૂબ શુભેચ્છાઓ! 🎉`;
+
+            // Host WhatsApp: +91 9819408295 (Mahendrabhai Halari)
+            const waUrl = `https://api.whatsapp.com/send?phone=919819408295&text=${encodeURIComponent(rsvpMsg)}`;
+            window.open(waUrl, '_blank');
+            closeModal('rsvpModal');
+        }
+
+        // Add Event to Calendar helper
+        function addToCalendar() {
+            const title = encodeURIComponent("શુભ વિવાહ - સુરેશ અને કિન્નરી");
+            const details = encodeURIComponent("લગ્ન સ્થળ: નિકોલ કોમ્યુનિટી હોલ, ન્યુ ઈન્ડીયા કોલોની, નવા નરોડા, અમદાવાદ");
+            const location = encodeURIComponent("Nikol Community Hall, Nava Naroda, Ahmedabad");
+            const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261206T053000Z/20261206T120000Z&details=${details}&location=${location}`;
+            window.open(gCalUrl, '_blank');
+        }
+
+        // One-Click WhatsApp Share Invitation
+        function shareOnWhatsApp() {
+            const inviteText = `🌸 *॥ શ્રી ગણેશાય નમઃ ॥* 🌸\n\n` +
+                `*શુભ વિવાહ આમંત્રણ પત્રિકા*\n\n` +
+                `પરમ કૃપાળુ પરમાત્માની અસીમ કૃપાથી અમારા સુપુત્ર\n` +
+                `*ચિ. સુરેશ* ના શુભ લગ્ન *ચિ. કિન્નરી* સાથે નિર્ધાર્યા છે.\n\n` +
+                `📅 *તારીખ:* રવિવાર, ૬ ડિસેમ્બર ૨૦૨૬\n` +
+                `⏰ *શુભ મુહૂર્ત:* સવારે ૧૧:૦૦ કલાકે\n` +
+                `📍 *સ્થળ:* નિકોલ કોમ્યુનિટી હોલ, ન્યુ ઈન્ડીયા કોલોની, નવા નરોડા, અમદાવાદ.\n\n` +
+                `આ માંગલિક અવસરે આપ શ્રી સપરિવાર પધારી નવદંપતીને આશીર્વાદ આપશો એ જ અભ્યર્થના.\n\n` +
+                `✨ *ડિજિટલ આમંત્રણ કાર્ડ જોવા માટે:* ${window.location.href}`;
+
+            const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(inviteText)}`;
+            window.open(waShareUrl, '_blank');
+        }
+
+        // Share Card Function (Generic / Copy Link)
+        function shareInvite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'શુભ વિવાહ - સુરેશ અને કિન્નરી',
+                    text: 'સુરેશ અને કિન્નરીના શુભ વિવાહનું ડિજિટલ આમંત્રણ કાર્ડ.',
+                    url: window.location.href
+                }).catch(() => { });
+            } else {
+                const tempInput = document.createElement('input');
+                tempInput.value = window.location.href;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                alert("આમંત્રણ લિંક સફળતાપૂર્વક કોપી થઈ ગઈ છે! (Invitation link copied)");
+            }
+        }
+    </script>
+</body>
+
+</html>
