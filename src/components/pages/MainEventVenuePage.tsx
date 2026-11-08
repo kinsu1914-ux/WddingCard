@@ -15,35 +15,35 @@ export const MainEventVenuePage: React.FC<MainEventVenuePageProps> = ({ onShareW
   };
 
   return (
-    <div id="page-4" className="page-content p-4 sm:p-8 bg-rose-50/30">
-      <div className="border-2 border-gold p-4 sm:p-6 rounded-xl relative">
+    <div id="page-4" className="page-content p-2 sm:p-6 md:p-8 bg-rose-50/30">
+      <div className="border-2 border-gold p-2.5 sm:p-6 rounded-xl relative">
         {/* Heading */}
-        <div className="text-center mb-6">
-          <span className="text-xs text-maroon-800 font-bold uppercase tracking-widest block">
+        <div className="text-center mb-3 sm:mb-6">
+          <span className="text-[10px] sm:text-xs text-maroon-800 font-bold uppercase tracking-widest block">
             મુખ્ય કાર્યક્રમ વિગત (ભાગ-૨)
           </span>
-          <h2 className="font-yatra text-2xl sm:text-3xl text-maroon-800 mt-1">
+          <h2 className="font-yatra text-xl sm:text-3xl text-maroon-800 mt-1">
             રાસ ગરબા અને લગ્ન ઉત્સવ
           </h2>
-          <div className="w-24 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+          <div className="w-20 sm:w-24 h-0.5 sm:h-1 bg-gold mx-auto mt-1 sm:mt-2 rounded-full"></div>
         </div>
 
         {/* Key Events Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
           {mainEvents.map((evt) => (
             <div
               key={evt.id}
-              className="bg-white p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between"
+              className="bg-white p-3 sm:p-4 rounded-xl border border-gold/40 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-yatra text-xl text-maroon-900">{evt.titleGujarati}</h4>
-                  <span className="text-2xl">{evt.icon}</span>
+                <div className="flex items-center justify-between mb-1 sm:mb-2">
+                  <h4 className="font-yatra text-lg sm:text-xl text-maroon-900">{evt.titleGujarati}</h4>
+                  <span className="text-xl sm:text-2xl">{evt.icon}</span>
                 </div>
                 <p className="text-xs text-gray-700 font-semibold">
                   {evt.dateGujarati} | {evt.timeGujarati}
                 </p>
-                <p className="text-xs text-gray-600 mt-2">
+                <p className="text-[11px] sm:text-xs text-gray-600 mt-1 sm:mt-2">
                   <i className="fas fa-map-pin text-maroon-800 mr-1"></i> {evt.venueGujarati}
                 </p>
               </div>
@@ -52,11 +52,11 @@ export const MainEventVenuePage: React.FC<MainEventVenuePageProps> = ({ onShareW
         </div>
 
         {/* Wedding Venue Box */}
-        <div className="mt-6 bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-900 text-white p-5 rounded-2xl border-2 border-gold text-center shadow-xl">
-          <span className="text-xs text-amber-300 font-bold tracking-widest uppercase block mb-1">
+        <div className="mt-4 sm:mt-6 bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-900 text-white p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 border-gold text-center shadow-xl">
+          <span className="text-[10px] sm:text-xs text-amber-300 font-bold tracking-widest uppercase block mb-1">
             🏰 લગ્ન સ્થળ (Main Wedding Venue)
           </span>
-          <h3 className="font-yatra text-2xl text-gold mb-1">નિકોલ કોમ્યુનિટી હોલ</h3>
+          <h3 className="font-yatra text-xl sm:text-2xl text-gold mb-1">નિકોલ કોમ્યુનિટી હોલ</h3>
           <p className="text-xs sm:text-sm text-gray-200">
             અમરકુંજ સોસાયટી, ન્યુ ઈન્ડીયા કોલોની, નવા નરોડા, અમદાવાદ
           </p>

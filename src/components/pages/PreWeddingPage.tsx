@@ -3,21 +3,21 @@ import { preWeddingEvents } from '../../data/weddingData';
 
 export const PreWeddingPage: React.FC = () => {
   return (
-    <div id="page-3" className="page-content p-4 sm:p-8 bg-amber-50/30">
-      <div className="border-2 border-gold p-4 sm:p-6 rounded-xl relative">
+    <div id="page-3" className="page-content p-2 sm:p-6 md:p-8 bg-amber-50/30">
+      <div className="border-2 border-gold p-2.5 sm:p-6 rounded-xl relative">
         {/* Heading */}
-        <div className="text-center mb-6">
-          <span className="text-xs text-maroon-800 font-bold uppercase tracking-widest block">
+        <div className="text-center mb-3 sm:mb-6">
+          <span className="text-[10px] sm:text-xs text-maroon-800 font-bold uppercase tracking-widest block">
             મંગલ પ્રસંગ વિગત (ભાગ-૧)
           </span>
-          <h2 className="font-yatra text-2xl sm:text-3xl text-maroon-800 mt-1">
+          <h2 className="font-yatra text-xl sm:text-3xl text-maroon-800 mt-1">
             સોનેરી અવસરની... રૂપેરી આભા...
           </h2>
-          <div className="w-24 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+          <div className="w-20 sm:w-24 h-0.5 sm:h-1 bg-gold mx-auto mt-1 sm:mt-2 rounded-full"></div>
         </div>
 
         {/* Event Timeline List */}
-        <div className="space-y-4">
+        <div className="space-y-2.5 sm:space-y-4">
           {preWeddingEvents.map((evt) => (
             <div
               key={evt.id}
