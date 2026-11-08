@@ -1,4 +1,4 @@
-import ganeshaSvg from '/ganesha.svg?url';
+import ganeshaImg from '/ganesha.jpg?url';
 import React from 'react';
 import { preWeddingEvents } from '../../data/weddingData';
 
@@ -40,7 +40,7 @@ export const PreWeddingPage: React.FC = () => {
                 }`}
               >
                 {evt.icon === 'ganesha' ? (
-                  <img src={ganeshaSvg} alt="Lord Ganesha" className="w-9 h-9 object-contain" />
+                  <img src={ganeshaImg} alt="Lord Ganesha" className="w-9 h-9 object-contain rounded-full" />
                 ) : (
                   evt.icon
                 )}
