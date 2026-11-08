@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import weddingSongUrl from '/wedding_song.mp3?url';
 
 export function useShehnaiAudio() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -6,7 +7,7 @@ export function useShehnaiAudio() {
 
   useEffect(() => {
     // Song: "Vela Milan Ni - Jigardan Gadhavi & Yati Upadhyay (Gujarati Wedding Song 2024)"
-    const audio = new Audio('/wedding_song.mp3');
+    const audio = new Audio(weddingSongUrl);
     audio.loop = true;
     audio.preload = 'auto';
     audioRef.current = audio;
