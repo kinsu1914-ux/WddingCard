@@ -30,7 +30,7 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({ isOpen, onOpen, on
           <div className="my-auto text-center">
             <p className="text-xs text-gold/80 uppercase tracking-widest font-semibold">પરિણય બંધન</p>
             <h3 className="font-yatra text-2xl sm:text-3xl text-gold mt-1">
-              {coupleData.groom.prefix} {coupleData.groom.nameGujarati} & {coupleData.bride.prefix} {coupleData.bride.nameGujarati}
+              {coupleData.groom.prefix} {coupleData.groom.nameGujarati} &amp; {coupleData.bride.prefix} {coupleData.bride.nameGujarati}
             </h3>
             <p className="text-xs text-amber-200 mt-2 font-mono">રવિવાર, ૬ ડિસેમ્બર ૨૦૨૬</p>
           </div>
@@ -55,4 +55,3 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({ isOpen, onOpen, on
     </div>
   );
 };
-

@@ -115,23 +115,23 @@ export const App: React.FC = () => {
         onSkip={() => setIsEnvelopeOpen(true)}
       />
 
-      {/* Action Toolbar */}
-      <HeaderToolbar
-        isPlaying={isPlaying}
-        onToggleAudio={toggleAudio}
-        petalsActive={petalsActive}
-        onTogglePetals={() => setPetalsActive(!petalsActive)}
-        onOpenEnvelope={() => setIsEnvelopeOpen(false)}
-        onOpenEnglishModal={() => setIsEnglishModalOpen(true)}
-        onOpenQRModal={() => setIsQRModalOpen(true)}
-        onOpenRSVPModal={() => setIsRSVPModalOpen(true)}
-        onShareWhatsApp={handleShareWhatsApp}
-      />
+      {/* Only Toolbar is Sticky */}
+      <div className="sticky top-0 z-40 w-full max-w-4xl mx-auto">
+        <HeaderToolbar
+          isPlaying={isPlaying}
+          onToggleAudio={toggleAudio}
+          petalsActive={petalsActive}
+          onTogglePetals={() => setPetalsActive(!petalsActive)}
+          onOpenEnvelope={() => setIsEnvelopeOpen(false)}
+          onOpenEnglishModal={() => setIsEnglishModalOpen(true)}
+          onOpenQRModal={() => setIsQRModalOpen(true)}
+          onOpenRSVPModal={() => setIsRSVPModalOpen(true)}
+          onShareWhatsApp={handleShareWhatsApp}
+        />
+      </div>
 
-      {/* Live Countdown Timer */}
+      {/* Normal Scrolling: Live Countdown Timer & 4 Tabs Navigation */}
       <CountdownTimer />
-
-      {/* 4 Tabs Navigation */}
       <PageNavigation currentPage={currentPage} onPageChange={setCurrentPage} />
 
       {/* Main Container Card Frame with Touch Swipe */}

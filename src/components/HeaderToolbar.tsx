@@ -37,7 +37,7 @@ export const HeaderToolbar: React.FC<HeaderToolbarProps> = ({
   }, []);
 
   return (
-    <header className="w-full max-w-4xl bg-maroon-900/95 text-gold px-2.5 py-1.5 sm:p-3 rounded-xl border border-gold/40 mb-2 sm:mb-3 shadow-lg backdrop-blur-md z-40">
+    <header className="w-full bg-maroon-900/98 text-gold px-2.5 py-1.5 sm:p-3 rounded-xl border border-gold/40 shadow-lg backdrop-blur-md mb-2 sm:mb-3">
       <div className="flex items-center justify-between gap-1.5 sm:gap-2">
         {/* Title & Couple Names */}
         <div className="flex items-center gap-1.5 min-w-0">
