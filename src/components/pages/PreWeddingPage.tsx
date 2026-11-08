@@ -1,3 +1,4 @@
+import ganeshaSvg from '/ganesha.svg?url';
 import React from 'react';
 import { preWeddingEvents } from '../../data/weddingData';
 
@@ -38,7 +39,11 @@ export const PreWeddingPage: React.FC = () => {
                     : 'bg-maroon-800 text-gold border-gold'
                 }`}
               >
-                {evt.icon}
+                {evt.icon === 'ganesha' ? (
+                  <img src={ganeshaSvg} alt="Lord Ganesha" className="w-9 h-9 object-contain" />
+                ) : (
+                  evt.icon
+                )}
               </div>
               <div className="flex-grow">
                 <h4 className="font-bold text-maroon-900 text-base">{evt.titleGujarati}</h4>

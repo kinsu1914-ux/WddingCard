@@ -7,7 +7,7 @@ export const coupleData: CoupleInfo = {
     nameEnglish: 'Suresh',
     parentsGujarati: 'અ.સૌ. ઊર્મિલાબેન તથા શ્રી મહેન્દ્રભાઈ ભીમજીભાઈ હાલારી ના સુપુત્ર',
     parentsEnglish: 'Son of Mrs. Urmilaben & Mr. Mahendrabhai Bhimjibhai Halari',
-    nativeGujarati: '(ગામ-દહસરા, જસદણ, રાજકોટ) હાલ મીરા રોડ, મુંબઈ નિવાસી',
+    nativeGujarati: '(ગામ-દહિસરા, જસદણ, રાજકોટ) હાલ મીરા રોડ, મુંબઈ નિવાસી',
     nativeEnglish: '(Native: Dahsara, Jasdan, Rajkot) Currently Residing at Mira Road, Mumbai'
   },
   bride: {
@@ -16,7 +16,7 @@ export const coupleData: CoupleInfo = {
     nameEnglish: 'Kinnari',
     parentsGujarati: 'અ.સૌ. જશોદાબેન તથા શ્રી બિપિનચંદ્ર કાંતિલાલ સોલંકીની સુપુત્રી',
     parentsEnglish: 'Daughter of Mrs. Jashodaben & Mr. Bipinchandra Kantilal Solanki',
-    nativeGujarati: '(ગામ-બેરાલુ, મહેસાણા) હાલ નરોડા, અમદાવાદ નિવાસી સાથે',
+    nativeGujarati: '(ગામ-ખેરાલુ, મહેસાણા) હાલ નરોડા, અમદાવાદ નિવાસી સાથે',
     nativeEnglish: '(Native: Beralu, Mehsana) Currently Residing at Naroda, Ahmedabad'
   },
   weddingDate: {
@@ -45,7 +45,7 @@ export const preWeddingEvents: WeddingEvent[] = [
     timeEnglish: '8:00 AM',
     venueGujarati: 'શ્રી કચ્છી ભાનુશાલી વાડી',
     venueEnglish: 'Shree Kutchhi Bhanushali Vadi',
-    icon: '🐘'
+    icon: 'ganesha'
   },
   {
     id: 'mandavda',
@@ -157,7 +157,7 @@ export const snehavadhinFamily = {
     '• અ.સૌ. અમીબેન રાજેશ હાલારી',
     '• અ.સૌ. જલ્પાબેન વિજય હાલારી'
   ],
-  jamaiPaksh: 'દેવેન્દ્ર દત્તારામ હરમલકર / નિતા દેવેન્દ્ર હરમલકર',
+  jamaiPaksh: 'શ્રી. દેવેન્દ્ર દત્તારામ હરમલકર / અ.સૌ. નિતા દેવેન્દ્ર હરમલકર',
   kids: 'દિશા, ઓમ, ગૌરવ'
 };
 
