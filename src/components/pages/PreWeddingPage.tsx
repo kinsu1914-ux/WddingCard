@@ -1,5 +1,5 @@
 import ganeshaImg from '/ganesha.jpg?url';
-import mandavdaImg from '/mandavda.jpg?url';
+import mandavdaImg from '/mandavda.png?url';
 import React from 'react';
 import { preWeddingEvents } from '../../data/weddingData';
 
@@ -34,7 +34,7 @@ export const PreWeddingPage: React.FC = () => {
                   evt.id === 'haldi'
                     ? 'bg-yellow-500 text-maroon-900 border-yellow-600'
                     : evt.id === 'mandavda'
-                    ? 'bg-amber-500 text-white border-gold'
+                    ? 'bg-amber-50 text-white border-gold'
                     : evt.id === 'mandva-bhojan'
                     ? 'bg-red-700 text-gold border-gold'
                     : 'bg-maroon-800 text-gold border-gold'
