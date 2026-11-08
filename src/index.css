@@ -2,6 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Hide Netlify branding badge on free plan */
+[data-netlify-badge],
+#netlify-badge-container,
+.netlify-badge,
+iframe[src*="netlify.com/attr"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 body {
   font-family: 'Hind Vadodara', sans-serif;
   background-color: #2b0308;
