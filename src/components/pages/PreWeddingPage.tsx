@@ -1,5 +1,7 @@
 import ganeshaImg from '/ganesha.jpg?url';
 import mandavdaImg from '/mandavda.png?url';
+import haldiImg from '/haldi.png?url';
+import bhojanImg from '/bhojan.png?url';
 import React from 'react';
 import { preWeddingEvents } from '../../data/weddingData';
 
@@ -36,7 +38,7 @@ export const PreWeddingPage: React.FC = () => {
                     : evt.id === 'mandavda'
                     ? 'bg-amber-50 text-white border-gold'
                     : evt.id === 'mandva-bhojan'
-                    ? 'bg-red-700 text-gold border-gold'
+                    ? 'bg-white text-maroon-900 border-gold'
                     : 'bg-maroon-800 text-gold border-gold'
                 }`}
               >
@@ -44,6 +46,10 @@ export const PreWeddingPage: React.FC = () => {
                   <img src={ganeshaImg} alt="Lord Ganesha" className="w-9 h-9 object-contain rounded-full" />
                 ) : evt.icon === 'mandavda' ? (
                   <img src={mandavdaImg} alt="Mandavda Kalash" className="w-9 h-9 object-contain" />
+                ) : evt.icon === 'haldi' ? (
+                  <img src={haldiImg} alt="Haldi Ceremony" className="w-9 h-9 object-contain" />
+                ) : evt.icon === 'mandva-bhojan' ? (
+                  <img src={bhojanImg} alt="Mandva Bhojan" className="w-9 h-9 object-contain" />
                 ) : (
                   evt.icon
                 )}

@@ -115,46 +115,66 @@ export const App: React.FC = () => {
         onSkip={() => setIsEnvelopeOpen(true)}
       />
 
-      {/* Only Toolbar is Sticky */}
-      <div className="sticky top-0 z-40 w-full max-w-4xl mx-auto">
-        <HeaderToolbar
-          isPlaying={isPlaying}
-          onToggleAudio={toggleAudio}
-          petalsActive={petalsActive}
-          onTogglePetals={() => setPetalsActive(!petalsActive)}
-          onOpenEnvelope={() => setIsEnvelopeOpen(false)}
-          onOpenEnglishModal={() => setIsEnglishModalOpen(true)}
-          onOpenQRModal={() => setIsQRModalOpen(true)}
-          onOpenRSVPModal={() => setIsRSVPModalOpen(true)}
-          onShareWhatsApp={handleShareWhatsApp}
-        />
-      </div>
+      {/* Main Container - Responsive Frame View */}
+      <div className="w-full flex-grow flex justify-center items-start sm:py-4">
+        {/* Mobile Device Mockup Frame on Desktop / Tablet (md: and up) */}
+        <div className="w-full max-w-[430px] sm:max-w-[460px] md:rounded-[40px] md:border-[10px] md:border-[#1a0205] md:shadow-[0_0_60px_rgba(212,175,55,0.25),0_25px_50px_rgba(0,0,0,0.8)] md:bg-[#2b0308] md:p-2 relative flex flex-col items-center">
+          
+          {/* Subtle Phone Notch / Speaker bar for Desktop */}
+          <div className="hidden md:flex justify-center items-center w-full pb-1 pt-0.5">
+            <div className="w-20 h-1.5 bg-[#4a0812] rounded-full border border-gold/30"></div>
+          </div>
 
-      {/* Normal Scrolling: Live Countdown Timer & 4 Tabs Navigation */}
-      <CountdownTimer />
-      <PageNavigation currentPage={currentPage} onPageChange={setCurrentPage} />
+          {/* Inner Content Container */}
+          <div className="w-full flex flex-col items-center">
+            {/* Only Toolbar is Sticky */}
+            <div className="sticky top-0 z-40 w-full">
+              <HeaderToolbar
+                isPlaying={isPlaying}
+                onToggleAudio={toggleAudio}
+                petalsActive={petalsActive}
+                onTogglePetals={() => setPetalsActive(!petalsActive)}
+                onOpenEnvelope={() => setIsEnvelopeOpen(false)}
+                onOpenEnglishModal={() => setIsEnglishModalOpen(true)}
+                onOpenQRModal={() => setIsQRModalOpen(true)}
+                onOpenRSVPModal={() => setIsRSVPModalOpen(true)}
+                onShareWhatsApp={handleShareWhatsApp}
+              />
+            </div>
 
-      {/* Main Container Card Frame with Touch Swipe */}
-      <div
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        className="w-full flex justify-center"
-      >
-        <CardFrame>
-          {currentPage === 1 && <CoverPage />}
-          {currentPage === 2 && <WeddingDetailsPage />}
-          {currentPage === 3 && <PreWeddingPage />}
-          {currentPage === 4 && <MainEventVenuePage onShareWhatsApp={handleShareWhatsApp} />}
+            {/* Normal Scrolling: Live Countdown Timer & 4 Tabs Navigation */}
+            <CountdownTimer />
+            <PageNavigation currentPage={currentPage} onPageChange={setCurrentPage} />
 
-          <CardFooter
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPrevPage={prevPage}
-            onNextPage={nextPage}
-            onShareWhatsApp={handleShareWhatsApp}
-            onShareInvite={handleShareInvite}
-          />
-        </CardFrame>
+            {/* Main Container Card Frame with Touch Swipe */}
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              className="w-full flex justify-center"
+            >
+              <CardFrame>
+                {currentPage === 1 && <CoverPage />}
+                {currentPage === 2 && <WeddingDetailsPage />}
+                {currentPage === 3 && <PreWeddingPage />}
+                {currentPage === 4 && <MainEventVenuePage onShareWhatsApp={handleShareWhatsApp} />}
+
+                <CardFooter
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPrevPage={prevPage}
+                  onNextPage={nextPage}
+                  onShareWhatsApp={handleShareWhatsApp}
+                  onShareInvite={handleShareInvite}
+                />
+              </CardFrame>
+            </div>
+          </div>
+
+          {/* Phone Bottom Home Indicator bar on Desktop */}
+          <div className="hidden md:flex justify-center items-center w-full pt-2 pb-0.5">
+            <div className="w-28 h-1 bg-gold/40 rounded-full"></div>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Signature */}

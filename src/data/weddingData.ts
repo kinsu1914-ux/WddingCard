@@ -57,7 +57,7 @@ export const preWeddingEvents: WeddingEvent[] = [
     timeEnglish: '9:00 AM',
     venueGujarati: 'શ્રી કચ્છી ભાનુશાલી વાડી',
     venueEnglish: 'Shree Kutchhi Bhanushali Vadi',
-    icon: '🏺'
+    icon: 'mandavda'
   },
   {
     id: 'mandva-bhojan',
@@ -69,7 +69,7 @@ export const preWeddingEvents: WeddingEvent[] = [
     timeEnglish: '12:30 PM',
     venueGujarati: 'શ્રી કચ્છી ભાનુશાલી વાડી',
     venueEnglish: 'Shree Kutchhi Bhanushali Vadi',
-    icon: '🍲'
+    icon: 'mandva-bhojan'
   },
   {
     id: 'haldi',
@@ -81,7 +81,7 @@ export const preWeddingEvents: WeddingEvent[] = [
     timeEnglish: '4:00 PM',
     venueGujarati: 'શ્રી કચ્છી ભાનુશાલી વાડી',
     venueEnglish: 'Shree Kutchhi Bhanushali Vadi',
-    icon: '✨'
+    icon: 'haldi'
   }
 ];
 

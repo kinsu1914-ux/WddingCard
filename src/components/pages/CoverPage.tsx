@@ -1,5 +1,6 @@
 import React from 'react';
 import { coupleData, inviterContact } from '../../data/weddingData';
+import ganeshaCoverImg from '/ganesha_cover.png?url';
 
 export const CoverPage: React.FC = () => {
   return (
@@ -8,8 +9,12 @@ export const CoverPage: React.FC = () => {
       <div className="border-2 border-dashed border-maroon-800/40 p-2.5 sm:p-6 rounded-xl relative">
         {/* Ganesha Symbol & Header */}
         <div className="text-center my-1 sm:my-2">
-          <div className="w-11 h-11 sm:w-16 sm:h-16 mx-auto bg-maroon-800 text-gold rounded-full flex items-center justify-center text-xl sm:text-3xl shadow-md border-2 border-gold mb-1 sm:mb-2">
-            🕉️
+          <div className="w-20 h-20 sm:w-28 sm:h-28 mx-auto flex items-center justify-center mb-1 sm:mb-2 drop-shadow-md">
+            <img 
+              src={ganeshaCoverImg} 
+              alt="Lord Ganesha" 
+              className="w-full h-full object-contain" 
+            />
           </div>
           <p className="text-[10px] sm:text-xs text-maroon-800 font-bold tracking-widest uppercase">
             || શ્રી ગણેશાય નમઃ ||
