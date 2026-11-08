@@ -82,7 +82,7 @@ export const CoverPage: React.FC = () => {
                     className="bg-amber-100 hover:bg-amber-200 text-maroon-900 px-2 py-0.5 rounded border border-maroon-300 font-bold transition flex items-center gap-1"
                     title="કૉલ કરો"
                   >
-                    <i className="fas fa-phone text-[9px]"></i> ૯૭૬૯૩૬૮૯૦૯
+                    <i className="fas fa-phone text-[9px]"></i> ૯૭૬૯૩૬૮૬૦૯
                   </a>
                 )}
               </div>

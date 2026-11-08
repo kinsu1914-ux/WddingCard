@@ -31,7 +31,7 @@ export const inviterContact: FamilyContact = {
   relation: 'નિંત્રક',
   address: 'બિ.૪૦૩, રિતુ ગ્લોરીયસ સોસાયટી, મહાવીર નગર, આઈડીયલ પાર્ક, મીરા રોડ (પૂર્વ), થાણે - ૪૦૧૧૦૭',
   phone1: '9819408295',
-  phone2: '9769368909'
+  phone2: '9769368609'
 };
 
 export const preWeddingEvents: WeddingEvent[] = [
@@ -92,7 +92,7 @@ export const mainEvents: WeddingEvent[] = [
     titleEnglish: 'Raas Garba & Sangeet Sandhya',
     dateGujarati: 'શનિવાર તા. ૫-૧૨-૨૦૨૬',
     dateEnglish: 'Saturday, Dec 5, 2026',
-    timeGujarati: 'સાંજ ૯.૦૦ કલાકે',
+    timeGujarati: 'રાત્રે ૯.૦૦ કલાકે',
     timeEnglish: '9:00 PM Onwards',
     venueGujarati: 'શક્તિ ચોક, પાર્શ્વનાથ ટાઉનશિપ, કૃષ્ણા નગર, અમદાવાદ',
     venueEnglish: 'Shakti Chowk, Parshwanath Township, Krishna Nagar, Ahmedabad',
@@ -106,7 +106,7 @@ export const mainEvents: WeddingEvent[] = [
     dateEnglish: 'Sunday, Dec 6, 2026',
     timeGujarati: 'સવારે ૯.૦૦ કલાકે',
     timeEnglish: '9:00 AM',
-    venueGujarati: 'મીરા રોડથી અમદાવાદ આગમન',
+    venueGujarati: 'શ્રી કચ્છી ભાનુશાલી વાડી થી નિકોલ કોમ્યુનિટી હોલ',
     venueEnglish: 'Arrival from Mira Road, Mumbai to Ahmedabad',
     icon: '🐎'
   },
