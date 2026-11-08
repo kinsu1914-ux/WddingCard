@@ -43,13 +43,13 @@ export const PreWeddingPage: React.FC = () => {
                 }`}
               >
                 {evt.icon === 'ganesha' ? (
-                  <img src={ganeshaImg} alt="Lord Ganesha" className="w-9 h-9 object-contain rounded-full" />
+                  <img src={ganeshaImg} alt="Lord Ganesha" className="w-9 h-9 object-contain rounded-full" loading="lazy" decoding="async" />
                 ) : evt.icon === 'mandavda' ? (
-                  <img src={mandavdaImg} alt="Mandavda Kalash" className="w-9 h-9 object-contain" />
+                  <img src={mandavdaImg} alt="Mandavda Kalash" className="w-9 h-9 object-contain" loading="lazy" decoding="async" />
                 ) : evt.icon === 'haldi' ? (
-                  <img src={haldiImg} alt="Haldi Ceremony" className="w-9 h-9 object-contain" />
+                  <img src={haldiImg} alt="Haldi Ceremony" className="w-9 h-9 object-contain" loading="lazy" decoding="async" />
                 ) : evt.icon === 'mandva-bhojan' ? (
-                  <img src={bhojanImg} alt="Mandva Bhojan" className="w-9 h-9 object-contain" />
+                  <img src={bhojanImg} alt="Mandva Bhojan" className="w-9 h-9 object-contain" loading="lazy" decoding="async" />
                 ) : (
                   evt.icon
                 )}

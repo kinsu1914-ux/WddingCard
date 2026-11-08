@@ -13,7 +13,8 @@ export const CoverPage: React.FC = () => {
             <img 
               src={ganeshaCoverImg} 
               alt="Lord Ganesha" 
-              className="w-full h-full object-contain" 
+              className="w-full h-full object-contain"
+              decoding="async"
             />
           </div>
           <p className="text-[10px] sm:text-xs text-maroon-800 font-bold tracking-widest uppercase">

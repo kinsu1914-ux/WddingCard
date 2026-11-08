@@ -9,7 +9,7 @@ export function useShehnaiAudio() {
     // Song: "Vela Milan Ni - Jigardan Gadhavi & Yati Upadhyay (Gujarati Wedding Song 2024)"
     const audio = new Audio(weddingSongUrl);
     audio.loop = true;
-    audio.preload = 'auto';
+    audio.preload = 'none';
     audioRef.current = audio;
 
     const onPlay = () => setIsPlaying(true);
