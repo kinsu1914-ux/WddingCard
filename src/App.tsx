@@ -26,19 +26,37 @@ export const App: React.FC = () => {
 
   const { isPlaying, toggleAudio } = useShehnaiAudio();
 
-  // Mobile Touch Swipe Handling
+  // Mobile Touch Swipe Handling (Ignore multi-touch gestures like pinch-to-zoom)
   const touchStartXRef = useRef<number>(0);
+  const touchStartYRef = useRef<number>(0);
+  const isPinchGestureRef = useRef<boolean>(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    // If user touches with 2 or more fingers (pinch to zoom), mark it to ignore page swipe
+    if (e.touches.length > 1) {
+      isPinchGestureRef.current = true;
+      return;
+    }
+    isPinchGestureRef.current = false;
     touchStartXRef.current = e.changedTouches[0].screenX;
+    touchStartYRef.current = e.changedTouches[0].screenY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diff = touchEndX - touchStartXRef.current;
+    // If this was part of a pinch-to-zoom gesture or multi-touch, do NOT trigger page navigation
+    if (isPinchGestureRef.current || e.touches.length > 0) {
+      isPinchGestureRef.current = false;
+      return;
+    }
 
-    if (Math.abs(diff) > 50) {
-      if (diff < 0) {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchEndX - touchStartXRef.current;
+    const diffY = touchEndY - touchStartYRef.current;
+
+    // Require an intentional horizontal swipe (at least 75px) that is clearly more horizontal than vertical
+    if (Math.abs(diffX) > 75 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX < 0) {
         // Swiped Left -> Next Page
         nextPage();
       } else {
