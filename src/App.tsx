@@ -54,6 +54,12 @@ export const App: React.FC = () => {
     const diffX = touchEndX - touchStartXRef.current;
     const diffY = touchEndY - touchStartYRef.current;
 
+    // If the browser/viewport is zoomed in (scale > 1.05), disable swipe navigation so user can pan/scroll freely
+    const isZoomed = window.visualViewport ? window.visualViewport.scale > 1.05 : false;
+    if (isZoomed) {
+      return;
+    }
+
     // Require an intentional horizontal swipe (at least 75px) that is clearly more horizontal than vertical
     if (Math.abs(diffX) > 75 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
       if (diffX < 0) {
